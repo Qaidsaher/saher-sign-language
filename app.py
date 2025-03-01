@@ -17,17 +17,19 @@ app.add_middleware(
 # Configure the InferenceHTTPClient with your API details.
 CLIENT = InferenceHTTPClient(
     api_url="https://detect.roboflow.com",
-    # api_key=os.getenv("API_KEY")  # Fetch API key from environment variables
     api_key="uLtdkU4nhEDy26911Ycc"
 )
 
 MODEL_ID = "arabic-sign-language-translator/2"
+
 @app.get("/")
 async def root():
     return {"message": "ONNX Model API is running"}
+
 @app.get("/saher-test")
-async def root():
-    return "this is saher test sign langauge api running test "
+async def saher_test():
+    return "this is saher test sign language API running test"
+
 @app.post("/predict")
 async def predict_image(file: UploadFile = File(...)):
     """
@@ -48,8 +50,5 @@ async def predict_image(file: UploadFile = File(...)):
         # Clean up the temporary file.
         if os.path.exists(temp_filename):
             os.remove(temp_filename)
+    
     return result
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
