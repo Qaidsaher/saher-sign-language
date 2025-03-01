@@ -17,6 +17,7 @@ app.add_middleware(
 # Configure the InferenceHTTPClient with your API details.
 CLIENT = InferenceHTTPClient(
     api_url="https://detect.roboflow.com",
+    # api_key=os.getenv("API_KEY")  # Fetch API key from environment variables
     api_key="uLtdkU4nhEDy26911Ycc"
 )
 
